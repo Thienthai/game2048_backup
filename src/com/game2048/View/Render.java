@@ -48,7 +48,7 @@ public class Render {
             for(int col = 0; col < COLS; col++){
                 Tile current = board[row][col];
                 if(current == null) continue;
-                current.render(g2d);
+                current.render.render(g2d, current);
             }
         }
 
@@ -118,4 +118,7 @@ public class Render {
         g.dispose();
     }
 
+    public void render(Graphics2D g, Tile tile){
+        g.drawImage(tileImage, tile.x, tile.y, null);
+    }
 }

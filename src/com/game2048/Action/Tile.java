@@ -1,10 +1,7 @@
 package com.game2048.Action;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import com.game2048.Controller.Game;
-import com.game2048.Controller.DrawUtils;
 import com.game2048.View.Render;
 
 public class Tile {
@@ -21,7 +18,7 @@ public class Tile {
     public static int BOARD_WIDTH = (COLS + 1) * SPACING + COLS * Tile.WIDTH;
     public static int BOARD_HEIGHT = (ROWS + 1) * SPACING + ROWS * Tile.HEIGHT;
 
-    private Render render = new Render();
+    public Render render = new Render();
     private BufferedImage gameBoard;
     private com.game2048.Action.Point slideTo;
     public int x;
@@ -53,8 +50,6 @@ public class Tile {
         this.y = y;
     }
 
-    public Tile(){}
-
     public Tile(int value, int x, int y){
         render.value = value;
         this.x = x;
@@ -84,10 +79,6 @@ public class Tile {
 
     public void setCanCombine(boolean canCombine){
         this.canCombine = canCombine;
-    }
-
-    public void render(Graphics2D g){
-        g.drawImage(render.tileImage, x, y, null);
     }
 
 }
