@@ -1,4 +1,4 @@
-package com.game2048.Model;
+package com.game2048.Action;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -26,17 +26,17 @@ public class Tile {
     private Color background;
     private Color text;
     private Font font;
-    private Point slideTo;
+    private com.game2048.Action.Point slideTo;
     private int x;
     private int y;
 
     private boolean canCombine = true; // ADDED
 
-    public Point getSlideTo() {
+    public com.game2048.Action.Point getSlideTo() {
         return slideTo;
     }
 
-    public void setSlideTo(Point slideTo) {
+    public void setSlideTo(com.game2048.Action.Point slideTo) {
         this.slideTo = slideTo;
     }
 
@@ -60,7 +60,7 @@ public class Tile {
         this.value = value;
         this.x = x;
         this.y = y;
-        slideTo = new Point (x,y);
+        slideTo = new Point(x,y);
         tileImage = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
         drawImage();
     }

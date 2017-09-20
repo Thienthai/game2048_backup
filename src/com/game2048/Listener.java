@@ -1,9 +1,8 @@
 package com.game2048;
 
-import com.game2048.Controller.Direction;
-import com.game2048.Controller.Render;
-import com.game2048.Logic.Logic;
-import com.game2048.Logic.Keyboard;
+import com.game2048.Action.Direction;
+import com.game2048.View.Render;
+import com.game2048.Action.Logic;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,13 +25,19 @@ public class Listener extends JPanel implements KeyListener{
 
 
     public Listener(){
+        setFocusable(true);
+        setPreferredSize(new Dimension(WIDTH,HEIGHT));
+        addKeyListener(this);
+
         board = new Logic(WIDTH / 2 - Logic.BOARD_WIDTH / 2, HEIGHT - Logic.BOARD_HEIGHT - 10);
 
         //render = new Render();
         //render.createBoardImage();
     }
 
-    public void boardUpdate() throws InterruptedException {
+    public void boardUpdate() {
+        //board.update();
+        checkKeys();
         board.update();
         Keyboard.update();
     }

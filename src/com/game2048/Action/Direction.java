@@ -1,4 +1,4 @@
-package com.game2048.Controller;
+package com.game2048.Action;
 
 public enum Direction {
 

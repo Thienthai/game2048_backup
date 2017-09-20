@@ -1,6 +1,6 @@
-package com.game2048.Controller;
+package com.game2048.View;
 
-import com.game2048.Model.Tile;
+import com.game2048.Action.Tile;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -15,9 +15,6 @@ public class Render {
     //private BufferedImage gameBoard;
 
     public void createBoardImage(BufferedImage gameBoard){
-//        Render create = new Render();
-//        create.createBoardImage(gameBoard);
-//        gameBoard = new BufferedImage(BOARD_WIDTH,BOARD_HEIGHT,BufferedImage.TYPE_INT_RGB);
         Graphics2D g = (Graphics2D) gameBoard.getGraphics();
         g.setColor(Color.darkGray);
         g.fillRect(0,0,BOARD_WIDTH,BOARD_HEIGHT);

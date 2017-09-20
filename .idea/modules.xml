@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/game2048_2.iml" filepath="$PROJECT_DIR$/game2048_2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/game2048_backup.iml" filepath="$PROJECT_DIR$/game2048_backup.iml" />
     </modules>
   </component>
 </project>
