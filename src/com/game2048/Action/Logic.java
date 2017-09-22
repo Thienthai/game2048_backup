@@ -1,6 +1,6 @@
 package com.game2048.Action;
 
-import com.game2048.Keyboard;
+import com.game2048.View.Keyboard;
 import com.game2048.View.Render;
 
 import java.awt.Graphics2D;

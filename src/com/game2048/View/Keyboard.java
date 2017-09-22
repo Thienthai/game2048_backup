@@ -1,4 +1,4 @@
-package com.game2048;
+package com.game2048.View;
 
 import java.awt.event.KeyEvent;
 

@@ -1,6 +1,8 @@
 package com.game2048.Controller;
 
 import com.game2048.Listener;
+import com.game2048.View.Render;
+import com.game2048.View.RenderHelper;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,13 +15,15 @@ public class Game implements Runnable {
     private Thread game;
     private boolean running;
     private Listener listener;
+    private RenderHelper renhelp;
 
     public Game(){
+        renhelp = new RenderHelper();
         listener = new Listener();
         JFrame window = new JFrame("2048");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
-        window.add(listener);
+        window.add(renhelp);
         window.pack();
         window.setLocationRelativeTo(null);
         window.setVisible(true);
@@ -44,7 +48,7 @@ public class Game implements Runnable {
 
             while(unprocessed >= 1){
                 update++;
-                listener.boardUpdate();
+                listener.boardUpdate(renhelp);
                 //update();
                 unprocessed--;
                 shouldRender = true;
@@ -53,7 +57,7 @@ public class Game implements Runnable {
             // parseRender ควรเอาไปใส้ใน observer
             if(shouldRender){
                 fps++;
-                listener.parseRender();
+                renhelp.parseRender(listener.getBoard());
                 shouldRender = false;
             }
 
