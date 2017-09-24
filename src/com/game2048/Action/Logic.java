@@ -40,7 +40,7 @@ public class Logic {
         finalBoard = new BufferedImage(BOARD_WIDTH,BOARD_HEIGHT,BufferedImage.TYPE_INT_RGB);
         Render create = new Render();
 
-        create.createBoardImage(gameBoard);
+        //create.createBoardImage(gameBoard);
         start();
     }
 
@@ -76,10 +76,10 @@ public class Logic {
         return SPACING + row * Tile.HEIGHT + row * SPACING;
     }
 
-    public void render(Graphics2D g){
-        Render create = new Render();
-        create.GraphicRender(g,finalBoard,board,gameBoard,x,y);
-    }
+//    public void render(Graphics2D g){
+//        Render create = new Render();
+//        create.GraphicRender(g,finalBoard,board,gameBoard,x,y);
+//    }
 
     public void update(){
  //       checkKeys();

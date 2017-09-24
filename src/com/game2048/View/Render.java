@@ -25,7 +25,7 @@ public class Render {
     private BufferedImage finalBoard = new BufferedImage(BOARD_WIDTH,BOARD_HEIGHT,BufferedImage.TYPE_INT_RGB);
 
 
-    public void createBoardImage(BufferedImage gameBoard){
+    public BufferedImage createBoardImage(){
         Graphics2D g = (Graphics2D) gameBoard.getGraphics();
         g.setColor(Color.darkGray);
         g.fillRect(0,0,BOARD_WIDTH,BOARD_HEIGHT);
@@ -38,6 +38,7 @@ public class Render {
                 g.fillRoundRect(x,y,Tile.WIDTH,Tile.HEIGHT,Tile.ARC_WIDTH,Tile.ARC_HEIGHT);
             }
         }
+        return  gameBoard;
     }
 
     public void GraphicRender(Graphics2D g, BufferedImage finalBoard, Tile[][] board, BufferedImage gameBoard, int x, int y){
