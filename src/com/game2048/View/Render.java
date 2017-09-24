@@ -21,7 +21,9 @@ public class Render {
     private static int SPACING = 10;
     private static int BOARD_WIDTH = (COLS + 1) * SPACING + COLS * Tile.WIDTH;
     private static int BOARD_HEIGHT = (ROWS + 1) * SPACING + ROWS * Tile.HEIGHT;
-    //private BufferedImage gameBoard;
+    private BufferedImage gameBoard = new BufferedImage(BOARD_WIDTH,BOARD_HEIGHT,BufferedImage.TYPE_INT_RGB);
+    private BufferedImage finalBoard = new BufferedImage(BOARD_WIDTH,BOARD_HEIGHT,BufferedImage.TYPE_INT_RGB);
+
 
     public void createBoardImage(BufferedImage gameBoard){
         Graphics2D g = (Graphics2D) gameBoard.getGraphics();

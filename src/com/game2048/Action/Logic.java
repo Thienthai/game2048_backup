@@ -48,16 +48,7 @@ public class Logic {
         for(int i = 0; i < startingTiles; i++){
             spawnRandom();
         }
-//
-//        spawn(0,0,2);
-//        spawn(0,1,2);
-//        spawn(0,2,2);
-//        spawn(0,3,2);
     }
-
-//    private void spawn(int row,int col,int value){
-//        board[row][col] = new com.game2048.Action.Tile(value,getTileX(col),getTileY(row));
-//    }
 
     private void spawnRandom(){
         Random random = new Random();
@@ -88,19 +79,6 @@ public class Logic {
     public void render(Graphics2D g){
         Render create = new Render();
         create.GraphicRender(g,finalBoard,board,gameBoard,x,y);
-//        Graphics2D g2d = (Graphics2D)finalBoard.getGraphics();
-//        g2d.drawImage(gameBoard,0,0,null);
-//
-//        for(int row = 0; row < ROWS; row++){
-//            for(int col = 0; col < COLS; col++){
-//                Tile current = board[row][col];
-//                if(current == null) continue;
-//                current.parseRender(g2d);
-//            }
-//        }
-//
-//        g.drawImage(finalBoard,x,y,null);
-//        g2d.dispose();
     }
 
     public void update(){
