@@ -27,6 +27,8 @@ public class Logic {
     public static int BOARD_HEIGHT = (ROWS + 1) * SPACING + ROWS * Tile.HEIGHT;
     private boolean hasStarted;
 
+    //add this
+
     public Logic(int x, int y){
         this.x = x;
         this.y = y;
