@@ -57,6 +57,9 @@ public class Game extends JPanel implements KeyListener, Runnable{
 //        g2d.dispose();
 //    }
 
+    // add this line
+    // and this line
+
     @Override
     public void run(){
         int fps = 0, update = 0;
