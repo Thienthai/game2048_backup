@@ -47,7 +47,6 @@ public class Game implements Runnable {
             while(unprocessed >= 1){
                 update++;
                 listener.boardUpdate(renhelp);
-                //update();
                 unprocessed--;
                 shouldRender = true;
             }
@@ -56,7 +55,6 @@ public class Game implements Runnable {
             if(shouldRender){
                 fps++;
                 renhelp.parseRender(listener.getBoard());
-                shouldRender = false;
             }
 
             else{
@@ -72,9 +70,6 @@ public class Game implements Runnable {
         if(System.currentTimeMillis() - fpsTimer > 1000){
             System.out.printf("%d fps %d updates",fps, update);
             System.out.println();
-            fps = 0;
-            update = 0;
-            fpsTimer += 1000;
         }
     }
 
@@ -85,11 +80,5 @@ public class Game implements Runnable {
         running = true;
         game = new Thread(this, "gamex");
         game.start();
-    }
-
-    public synchronized void stop(){
-        if(!running) return;
-        running = false;
-        System.exit(0);
     }
 }

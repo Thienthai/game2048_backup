@@ -56,9 +56,7 @@ public class RenderHelper extends JPanel implements KeyListener {
         create.GraphicRender(g,finalBoard,board.getBoard(),gameBoard,board.getX(),board.getY());
         //RENDER BOARD
         g.dispose();
-
         Graphics2D g2d = (Graphics2D) getGraphics();
-        //System.out.println(g2d);
         g2d.drawImage(image, 0, 0, null);
         g2d.dispose();
     }

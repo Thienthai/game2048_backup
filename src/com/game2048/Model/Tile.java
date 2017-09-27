@@ -6,29 +6,18 @@ import com.game2048.View.Render;
 
 public class Tile {
 
-
-    public static final int ROWS = 4;
-    public static final int COLS = 4;
     public static final int WIDTH = 80;
     public static final int HEIGHT = 80;
     public static final int SLIDE_SPEED = 20;
     public static final int ARC_WIDTH = 15;
     public static final int ARC_HEIGHT = 15;
-    private static int SPACING = 10;
-    public static int BOARD_WIDTH = (COLS + 1) * SPACING + COLS * Tile.WIDTH;
-    public static int BOARD_HEIGHT = (ROWS + 1) * SPACING + ROWS * Tile.HEIGHT;
 
     public Render render = new Render();
-    private BufferedImage gameBoard;
     private com.game2048.Model.Point slideTo;
     public int x;
     public int y;
 
     private boolean canCombine = true; // ADDED
-
-    public com.game2048.Model.Point getSlideTo() {
-        return slideTo;
-    }
 
     public void setSlideTo(com.game2048.Model.Point slideTo) {
         this.slideTo = slideTo;

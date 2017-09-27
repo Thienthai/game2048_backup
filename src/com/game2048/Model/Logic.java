@@ -1,27 +1,22 @@
 package com.game2048.Model;
 
+import com.game2048.Controller.Listener;
 import com.game2048.View.Keyboard;
 
 import java.awt.event.KeyEvent;
-import java.util.Random;
 
 public class Logic {
 
     private static final int ROWS = 4;
     private static final int COLS = 4;
-
-    private final int startingTiles = 2;
-
     public Tile[][] getBoard() {
         return board;
     }
-
     private Tile[][] board;
     private boolean dead;
     private boolean won;
     private int x;
     private int y;
-
     private static int SPACING = 10;
     public static int BOARD_WIDTH = (COLS + 1) * SPACING + COLS * Tile.WIDTH;
     public static int BOARD_HEIGHT = (ROWS + 1) * SPACING + ROWS * Tile.HEIGHT;
@@ -31,13 +26,6 @@ public class Logic {
         this.x = x;
         this.y = y;
         board = new Tile[ROWS][COLS];
-        start();
-    }
-
-    private void start(){
-        for(int i = 0; i < startingTiles; i++){
-            spawnRandom();
-        }
     }
 
     public int getX() {
@@ -46,79 +34,6 @@ public class Logic {
 
     public int getY() {
         return y;
-    }
-
-    private void spawnRandom(){
-        Random random = new Random();
-        boolean notValid = true;
-
-        while(notValid){
-            int location = random.nextInt(ROWS * COLS);
-            int row = location / ROWS;
-            int col = location % COLS;
-            Tile current = board[row][col];
-            if(current == null){
-                int value = random.nextInt(10) < 9 ? 2 : 4;
-                Tile tile = new Tile(value, getTileX(col),getTileY(row));
-                board[row][col] = tile;
-                notValid = false;
-            }
-        }
-    }
-
-    public int getTileX(int col){
-        return SPACING + col * Tile.WIDTH + col * SPACING;
-    }
-
-    public int getTileY(int row){
-        return SPACING + row * Tile.HEIGHT + row * SPACING;
-    }
-
-
-    public void update(){
-        for(int row = 0; row < ROWS; row++){
-            for(int col = 0; col < COLS; col++){
-                Tile current = board[row][col];
-                if(current == null) continue;
-                resetPosition(current, row,col);
-                if(current.getValue() == 2048){
-                    won = true;
-                }
-            }
-        }
-    }
-
-    private void resetPosition(Tile current, int row, int col){
-        if(current == null) return;
-
-        int x = getTileX(col);
-        int y = getTileY(row);
-
-        int disX = current.getX() - x;
-        int disY = current.getY() - y;
-
-        if(Math.abs(disX) < Tile.SLIDE_SPEED){
-            current.setX(current.getX() - disX);
-        }
-
-        if(Math.abs(disY) < Tile.SLIDE_SPEED){
-            current.setY(current.getY() - disY);
-        }
-
-        if(disX < 0){
-            current.setX(current.getX() + Tile.SLIDE_SPEED);
-        }
-
-        if(disY < 0){
-            current.setY(current.getY() + Tile.SLIDE_SPEED);
-        }
-        if(disX > 0){
-            current.setX(current.getX() - Tile.SLIDE_SPEED);
-        }
-        if(disY > 0){
-            current.setY(current.getY() - Tile.SLIDE_SPEED);
-        }
-
     }
 
     private boolean move(int row, int col, int horizontalDirection, int verticalDirection, Direction dir){
@@ -238,7 +153,8 @@ public class Logic {
         }
 
         if(canMove){
-            spawnRandom();
+            Listener listener = new Listener();
+            listener.spawn_listener(board);
             // check dead
             checkDead();
         }
@@ -278,29 +194,6 @@ public class Logic {
             if(current.getValue() == check.getValue()) return  true;
         }
         return false;
-    }
-
-    private void checkKeys(){ // ใช้ฟังชั่นนี้เชื่อมระหว่าง listener กับ logic
-        if(Keyboard.typed(KeyEvent.VK_LEFT)){
-            //move tiles left
-            moveTiles(Direction.LEFT);
-            if(!hasStarted)hasStarted = true;
-        }
-        if(Keyboard.typed(KeyEvent.VK_RIGHT)){
-            //move tiles right
-            moveTiles(Direction.RIGHT);
-            if(!hasStarted)hasStarted = true;
-        }
-        if(Keyboard.typed(KeyEvent.VK_UP)){
-            //move tiles up
-            moveTiles(Direction.UP);
-            if(!hasStarted)hasStarted = true;
-        }
-        if(Keyboard.typed(KeyEvent.VK_DOWN)){
-            //move tiles down
-            moveTiles(Direction.DOWN);
-            if(!hasStarted)hasStarted = true;
-        }
     }
 
 }

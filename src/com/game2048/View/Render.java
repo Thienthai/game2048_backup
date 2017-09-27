@@ -6,6 +6,7 @@ import com.game2048.Controller.Game;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 public class Render {
     public BufferedImage tileImage;
@@ -13,30 +14,11 @@ public class Render {
     private Color text;
     public int value;
     private Font font;
-
-
-
+    private boolean dead;
+    private boolean won;
     private static final int ROWS = 4;
     private static final int COLS = 4;
     private static int SPACING = 10;
-    private static int BOARD_WIDTH = (COLS + 1) * SPACING + COLS * Tile.WIDTH;
-    private static int BOARD_HEIGHT = (ROWS + 1) * SPACING + ROWS * Tile.HEIGHT;
-
-
-//    public void createBoardImage(BufferedImage gameBoard){
-//        Graphics2D g = (Graphics2D) gameBoard.getGraphics();
-//        g.setColor(Color.darkGray);
-//        g.fillRect(0,0,BOARD_WIDTH,BOARD_HEIGHT);
-//        g.setColor(Color.lightGray);
-//
-//        for(int row = 0; row < ROWS; row++){
-//            for(int col = 0; col < COLS; col++){
-//                int x = SPACING + SPACING * col + Tile.WIDTH * col;
-//                int y = SPACING + SPACING * row + Tile.HEIGHT * row;
-//                g.fillRoundRect(x,y,Tile.WIDTH,Tile.HEIGHT,Tile.ARC_WIDTH,Tile.ARC_HEIGHT);
-//            }
-//        }
-//    }
 
     public void GraphicRender(Graphics2D g, BufferedImage finalBoard, Tile[][] board, BufferedImage gameBoard, int x, int y){
 //        Render create = new Render();
@@ -120,5 +102,83 @@ public class Render {
 
     public void render(Graphics2D g, Tile tile){
         g.drawImage(tileImage, tile.x, tile.y, null);
+    }
+
+    public void updateBoard(Tile[][] board){
+        for(int row = 0; row < ROWS; row++){
+            for(int col = 0; col < COLS; col++){
+                Tile current = board[row][col];
+                if(current == null) continue;
+                resetPosition(current, row,col);
+                if(current.getValue() == 2048){
+                    won = true;
+                }
+            }
+        }
+    }
+
+    private void resetPosition(Tile current, int row, int col){
+        if(current == null) return;
+
+        int x = getTileX(col);
+        int y = getTileY(row);
+
+        int disX = current.getX() - x;
+        int disY = current.getY() - y;
+
+        if(Math.abs(disX) < Tile.SLIDE_SPEED){
+            current.setX(current.getX() - disX);
+        }
+
+        if(Math.abs(disY) < Tile.SLIDE_SPEED){
+            current.setY(current.getY() - disY);
+        }
+
+        if(disX < 0){
+            current.setX(current.getX() + Tile.SLIDE_SPEED);
+        }
+
+        if(disY < 0){
+            current.setY(current.getY() + Tile.SLIDE_SPEED);
+        }
+        if(disX > 0){
+            current.setX(current.getX() - Tile.SLIDE_SPEED);
+        }
+        if(disY > 0){
+            current.setY(current.getY() - Tile.SLIDE_SPEED);
+        }
+
+    }
+
+    private int getTileX(int col){
+        return SPACING + col * Tile.WIDTH + col * SPACING;
+    }
+
+    private int getTileY(int row){
+        return SPACING + row * Tile.HEIGHT + row * SPACING;
+    }
+
+    public void randomSpawn(Tile[][] board){
+        Random random = new Random();
+        boolean notValid = true;
+
+        while(notValid){
+            int location = random.nextInt(ROWS * COLS);
+            int row = location / ROWS;
+            int col = location % COLS;
+            Tile current = board[row][col];
+            if(current == null){
+                int value = random.nextInt(10) < 9 ? 2 : 4;
+                Tile tile = new Tile(value, getTileX(col),getTileY(row));
+                board[row][col] = tile;
+                notValid = false;
+            }
+        }
+    }
+
+    public void start(Tile[][] board){
+        for(int i = 0; i < 2; i++){
+            randomSpawn(board);
+        }
     }
 }
