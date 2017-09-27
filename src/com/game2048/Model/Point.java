@@ -1,4 +1,4 @@
-package com.game2048.Action;
+package com.game2048.Model;
 
 public class Point {
 

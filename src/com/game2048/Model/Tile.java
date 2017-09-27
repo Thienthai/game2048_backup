@@ -1,4 +1,4 @@
-package com.game2048.Action;
+package com.game2048.Model;
 
 import java.awt.image.BufferedImage;
 
@@ -20,17 +20,17 @@ public class Tile {
 
     public Render render = new Render();
     private BufferedImage gameBoard;
-    private com.game2048.Action.Point slideTo;
+    private com.game2048.Model.Point slideTo;
     public int x;
     public int y;
 
     private boolean canCombine = true; // ADDED
 
-    public com.game2048.Action.Point getSlideTo() {
+    public com.game2048.Model.Point getSlideTo() {
         return slideTo;
     }
 
-    public void setSlideTo(com.game2048.Action.Point slideTo) {
+    public void setSlideTo(com.game2048.Model.Point slideTo) {
         this.slideTo = slideTo;
     }
 
@@ -59,10 +59,6 @@ public class Tile {
         render.drawImage();
     }
 
-
-    public void update(){
-
-    }
 
     public int getValue(){
         return render.value;

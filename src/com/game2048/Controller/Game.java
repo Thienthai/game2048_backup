@@ -1,7 +1,5 @@
 package com.game2048.Controller;
 
-import com.game2048.Listener;
-import com.game2048.View.Render;
 import com.game2048.View.RenderHelper;
 
 import javax.swing.*;

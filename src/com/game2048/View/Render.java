@@ -1,6 +1,6 @@
 package com.game2048.View;
 
-import com.game2048.Action.Tile;
+import com.game2048.Model.Tile;
 import com.game2048.Controller.DrawUtils;
 import com.game2048.Controller.Game;
 
@@ -21,22 +21,22 @@ public class Render {
     private static int SPACING = 10;
     private static int BOARD_WIDTH = (COLS + 1) * SPACING + COLS * Tile.WIDTH;
     private static int BOARD_HEIGHT = (ROWS + 1) * SPACING + ROWS * Tile.HEIGHT;
-    //private BufferedImage gameBoard;
 
-    public void createBoardImage(BufferedImage gameBoard){
-        Graphics2D g = (Graphics2D) gameBoard.getGraphics();
-        g.setColor(Color.darkGray);
-        g.fillRect(0,0,BOARD_WIDTH,BOARD_HEIGHT);
-        g.setColor(Color.lightGray);
 
-        for(int row = 0; row < ROWS; row++){
-            for(int col = 0; col < COLS; col++){
-                int x = SPACING + SPACING * col + Tile.WIDTH * col;
-                int y = SPACING + SPACING * row + Tile.HEIGHT * row;
-                g.fillRoundRect(x,y,Tile.WIDTH,Tile.HEIGHT,Tile.ARC_WIDTH,Tile.ARC_HEIGHT);
-            }
-        }
-    }
+//    public void createBoardImage(BufferedImage gameBoard){
+//        Graphics2D g = (Graphics2D) gameBoard.getGraphics();
+//        g.setColor(Color.darkGray);
+//        g.fillRect(0,0,BOARD_WIDTH,BOARD_HEIGHT);
+//        g.setColor(Color.lightGray);
+//
+//        for(int row = 0; row < ROWS; row++){
+//            for(int col = 0; col < COLS; col++){
+//                int x = SPACING + SPACING * col + Tile.WIDTH * col;
+//                int y = SPACING + SPACING * row + Tile.HEIGHT * row;
+//                g.fillRoundRect(x,y,Tile.WIDTH,Tile.HEIGHT,Tile.ARC_WIDTH,Tile.ARC_HEIGHT);
+//            }
+//        }
+//    }
 
     public void GraphicRender(Graphics2D g, BufferedImage finalBoard, Tile[][] board, BufferedImage gameBoard, int x, int y){
 //        Render create = new Render();

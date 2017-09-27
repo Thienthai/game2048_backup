@@ -1,7 +1,8 @@
 package com.game2048.View;
 
-import com.game2048.Action.Direction;
-import com.game2048.Action.Logic;
+import com.game2048.Model.Direction;
+import com.game2048.Model.Logic;
+import com.game2048.Model.Tile;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,18 +16,44 @@ public class RenderHelper extends JPanel implements KeyListener {
     private static final int HEIGHT = 630;
     private boolean hasStarted;
     private BufferedImage image = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
+    private BufferedImage gameBoard;
+    private BufferedImage finalBoard;
+    private static final int ROWS = 4;
+    private static final int COLS = 4;
+    private static int SPACING = 10;
+    private static int BOARD_WIDTH = (COLS + 1) * SPACING + COLS * Tile.WIDTH;
+    private static int BOARD_HEIGHT = (ROWS + 1) * SPACING + ROWS * Tile.HEIGHT;
 
     public RenderHelper(){
         setFocusable(true);
         setPreferredSize(new Dimension(WIDTH,HEIGHT));
         addKeyListener(this);
+        gameBoard = new BufferedImage(BOARD_WIDTH,BOARD_HEIGHT,BufferedImage.TYPE_INT_RGB);
+        finalBoard = new BufferedImage(BOARD_WIDTH,BOARD_HEIGHT,BufferedImage.TYPE_INT_RGB);
+        createBoardImage(gameBoard);
+    }
+
+    public void createBoardImage(BufferedImage gameBoard){
+        Graphics2D g = (Graphics2D) gameBoard.getGraphics();
+        g.setColor(Color.darkGray);
+        g.fillRect(0,0,BOARD_WIDTH,BOARD_HEIGHT);
+        g.setColor(Color.lightGray);
+
+        for(int row = 0; row < ROWS; row++){
+            for(int col = 0; col < COLS; col++){
+                int x = SPACING + SPACING * col + Tile.WIDTH * col;
+                int y = SPACING + SPACING * row + Tile.HEIGHT * row;
+                g.fillRoundRect(x,y,Tile.WIDTH,Tile.HEIGHT,Tile.ARC_WIDTH,Tile.ARC_HEIGHT);
+            }
+        }
     }
 
     public void parseRender(Logic board){
         Graphics2D g = (Graphics2D) image.getGraphics();
         g.setColor(Color.white);
         g.fillRect(0,0,WIDTH,HEIGHT);
-        board.render(g);
+        Render create = new Render();
+        create.GraphicRender(g,finalBoard,board.getBoard(),gameBoard,board.getX(),board.getY());
         //RENDER BOARD
         g.dispose();
 

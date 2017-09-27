@@ -1,11 +1,8 @@
-package com.game2048.Action;
+package com.game2048.Model;
 
 import com.game2048.View.Keyboard;
-import com.game2048.View.Render;
 
-import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public class Logic {
@@ -22,8 +19,6 @@ public class Logic {
     private Tile[][] board;
     private boolean dead;
     private boolean won;
-    private BufferedImage gameBoard;
-    private BufferedImage finalBoard;
     private int x;
     private int y;
 
@@ -36,11 +31,6 @@ public class Logic {
         this.x = x;
         this.y = y;
         board = new Tile[ROWS][COLS];
-        gameBoard = new BufferedImage(BOARD_WIDTH,BOARD_HEIGHT,BufferedImage.TYPE_INT_RGB);
-        finalBoard = new BufferedImage(BOARD_WIDTH,BOARD_HEIGHT,BufferedImage.TYPE_INT_RGB);
-        Render create = new Render();
-
-        create.createBoardImage(gameBoard);
         start();
     }
 
@@ -48,16 +38,15 @@ public class Logic {
         for(int i = 0; i < startingTiles; i++){
             spawnRandom();
         }
-//
-//        spawn(0,0,2);
-//        spawn(0,1,2);
-//        spawn(0,2,2);
-//        spawn(0,3,2);
     }
 
-//    private void spawn(int row,int col,int value){
-//        board[row][col] = new com.game2048.Action.Tile(value,getTileX(col),getTileY(row));
-//    }
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 
     private void spawnRandom(){
         Random random = new Random();
@@ -85,31 +74,12 @@ public class Logic {
         return SPACING + row * Tile.HEIGHT + row * SPACING;
     }
 
-    public void render(Graphics2D g){
-        Render create = new Render();
-        create.GraphicRender(g,finalBoard,board,gameBoard,x,y);
-//        Graphics2D g2d = (Graphics2D)finalBoard.getGraphics();
-//        g2d.drawImage(gameBoard,0,0,null);
-//
-//        for(int row = 0; row < ROWS; row++){
-//            for(int col = 0; col < COLS; col++){
-//                Tile current = board[row][col];
-//                if(current == null) continue;
-//                current.parseRender(g2d);
-//            }
-//        }
-//
-//        g.drawImage(finalBoard,x,y,null);
-//        g2d.dispose();
-    }
 
     public void update(){
- //       checkKeys();
         for(int row = 0; row < ROWS; row++){
             for(int col = 0; col < COLS; col++){
                 Tile current = board[row][col];
                 if(current == null) continue;
-                current.update();
                 resetPosition(current, row,col);
                 if(current.getValue() == 2048){
                     won = true;
@@ -174,8 +144,6 @@ public class Logic {
                 canMove = true;
                 board[newRow - verticalDirection][newCol - horizontalDirection] = null;
                 board[newRow][newCol].setSlideTo(new Point (newRow,newCol));
-                //board[newRow][newCol].setCombineAnimation(true);
-                //add to score
 
             }else{
                 move = false;
