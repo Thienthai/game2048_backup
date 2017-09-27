@@ -2,7 +2,6 @@ package com.game2048.View;
 
 import com.game2048.Action.Tile;
 import com.game2048.Controller.DrawUtils;
-import com.game2048.Controller.Game;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
