@@ -1,6 +1,5 @@
-package com.game2048.Logic;
+package com.game2048.View;
 
-import javax.security.auth.kerberos.KerberosTicket;
 import java.awt.event.KeyEvent;
 
 public class Keyboard {
