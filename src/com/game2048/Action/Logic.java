@@ -1,10 +1,8 @@
-package com.game2048.Logic;
+package com.game2048.Action;
 
-import com.game2048.Controller.Direction;
-import com.game2048.Controller.Render;
-import com.game2048.Listener;
-import com.game2048.Model.Tile;
-import com.game2048.Model.Point;
+import com.game2048.View.Keyboard;
+import com.game2048.View.Render;
+
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -58,7 +56,7 @@ public class Logic {
     }
 
 //    private void spawn(int row,int col,int value){
-//        board[row][col] = new com.game2048.Model.Tile(value,getTileX(col),getTileY(row));
+//        board[row][col] = new com.game2048.Action.Tile(value,getTileX(col),getTileY(row));
 //    }
 
     private void spawnRandom(){
@@ -106,8 +104,7 @@ public class Logic {
     }
 
     public void update(){
-        checkKeys();
-
+ //       checkKeys();
         for(int row = 0; row < ROWS; row++){
             for(int col = 0; col < COLS; col++){
                 Tile current = board[row][col];
