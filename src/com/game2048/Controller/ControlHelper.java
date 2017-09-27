@@ -2,6 +2,7 @@ package com.game2048.Controller;
 
 import com.game2048.View.Keyboard;
 import com.game2048.View.Render;
+import com.game2048.Action.Logic;
 import com.game2048.View.RenderHelper;
 
 import javax.swing.*;
@@ -10,7 +11,7 @@ import java.awt.image.BufferedImage;
 /**
  * Created by thienthai on 18/9/2560.
  */
-public class Listener extends JPanel{
+public class ControlHelper extends JPanel{
 
     private static final long serialVersionUID = 1L;
 
@@ -22,8 +23,15 @@ public class Listener extends JPanel{
     private Render render;
 
 
-    public Listener(){
+    public ControlHelper(){
+//        setFocusable(true);
+//        setPreferredSize(new Dimension(WIDTH,HEIGHT));
+        //addKeyListener(this);
+
         board = new Logic(WIDTH / 2 - Logic.BOARD_WIDTH / 2, HEIGHT - Logic.BOARD_HEIGHT - 10);
+
+        //render = new Render();
+        //render.createBoardImage();
     }
 
     public void boardUpdate(RenderHelper renhelp) {
@@ -36,5 +44,4 @@ public class Listener extends JPanel{
     public Logic getBoard() {
         return board;
     }
-
 }
