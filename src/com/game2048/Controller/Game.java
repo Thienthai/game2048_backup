@@ -12,12 +12,12 @@ public class Game implements Runnable {
     public static final Font main = new Font("Bebas Neue Regular", Font.PLAIN, 28);
     private Thread game;
     private boolean running;
-    private ControlHelper controlHelper;
+    private Listener listener;
     private RenderHelper renhelp;
 
     public Game(){
         renhelp = new RenderHelper();
-        controlHelper = new ControlHelper();
+        listener = new Listener();
         JFrame window = new JFrame("2048");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
@@ -46,7 +46,7 @@ public class Game implements Runnable {
 
             while(unprocessed >= 1){
                 update++;
-                controlHelper.boardUpdate(renhelp);
+                listener.boardUpdate(renhelp);
                 //update();
                 unprocessed--;
                 shouldRender = true;
@@ -55,7 +55,7 @@ public class Game implements Runnable {
             // parseRender ควรเอาไปใส้ใน observer
             if(shouldRender){
                 fps++;
-                renhelp.parseRender(controlHelper.getBoard());
+                renhelp.parseRender(listener.getBoard());
                 shouldRender = false;
             }
 

@@ -21,7 +21,6 @@ public class Render {
     private static int SPACING = 10;
     private static int BOARD_WIDTH = (COLS + 1) * SPACING + COLS * Tile.WIDTH;
     private static int BOARD_HEIGHT = (ROWS + 1) * SPACING + ROWS * Tile.HEIGHT;
-<<<<<<< HEAD
 
 
 //    public void createBoardImage(BufferedImage gameBoard){
@@ -38,27 +37,6 @@ public class Render {
 //            }
 //        }
 //    }
-=======
-    private BufferedImage gameBoard = new BufferedImage(BOARD_WIDTH,BOARD_HEIGHT,BufferedImage.TYPE_INT_RGB);
-    private BufferedImage finalBoard = new BufferedImage(BOARD_WIDTH,BOARD_HEIGHT,BufferedImage.TYPE_INT_RGB);
-
-
-    public BufferedImage createBoardImage(){
-        Graphics2D g = (Graphics2D) gameBoard.getGraphics();
-        g.setColor(Color.darkGray);
-        g.fillRect(0,0,BOARD_WIDTH,BOARD_HEIGHT);
-        g.setColor(Color.lightGray);
-
-        for(int row = 0; row < ROWS; row++){
-            for(int col = 0; col < COLS; col++){
-                int x = SPACING + SPACING * col + Tile.WIDTH * col;
-                int y = SPACING + SPACING * row + Tile.HEIGHT * row;
-                g.fillRoundRect(x,y,Tile.WIDTH,Tile.HEIGHT,Tile.ARC_WIDTH,Tile.ARC_HEIGHT);
-            }
-        }
-        return  gameBoard;
-    }
->>>>>>> ca8c7e598c5749a275a3ee09ea50d789c7f24c39
 
     public void GraphicRender(Graphics2D g, BufferedImage finalBoard, Tile[][] board, BufferedImage gameBoard, int x, int y){
 //        Render create = new Render();

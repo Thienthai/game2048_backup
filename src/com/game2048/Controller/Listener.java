@@ -2,6 +2,7 @@ package com.game2048.Controller;
 
 import com.game2048.View.Keyboard;
 import com.game2048.View.Render;
+import com.game2048.Model.Logic;
 import com.game2048.View.RenderHelper;
 
 import javax.swing.*;

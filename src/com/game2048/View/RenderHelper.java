@@ -1,6 +1,7 @@
 package com.game2048.View;
 
 import com.game2048.Model.Direction;
+import com.game2048.Model.Logic;
 import com.game2048.Model.Tile;
 
 import javax.swing.*;
